@@ -1,0 +1,50 @@
+<html>
+
+
+<body>
+Let's send a message!
+
+<form id="sendMessage" action="http://localhost:8080/sendSMS" method="POST">
+  From: <input type="text" id='fromForm' name="messageFrom"><br>
+  Phone Number: <input type="text" id='phoneForm' name="phoneNumber"><br>
+  Message: <input size = '200' type="text" id='messageForm' name="message"><br><br>
+  <button>Send!</button>
+</form>
+
+
+
+<script>
+var url_string = window.location.href
+var url = new URL(url_string);
+var from = "Doug";
+var phone = url.searchParams.get("phone");
+var status = url.searchParams.get("status");
+
+document.getElementById('fromForm').value=from;
+document.getElementById('phoneForm').value=phone;
+var message;
+if(status = 'needsAction'){
+	message = "Hey, can you accept and join the meeting I sent you?"
+}else{
+
+	message = "Our meeting has started, can you join?"
+}
+document.getElementById('messageForm').value=message;
+console.log(phone + status+ message);
+
+
+function sendSMS(){
+	var phoneToSMS= document.getElementById('phoneForm').value;
+	var messageToSend = document.getElementById('messageForm').value;
+	console.log(phoneToSMS +" "+ messageToSend);
+	//now use nexmo to send the message
+
+	
+	
+	
+}
+
+
+</script>
+</body>
+</html>
